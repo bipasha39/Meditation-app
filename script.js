@@ -19,7 +19,7 @@ const app = () => {
 
     //Create a function specific to stop and play songs
 
-    const playingSongs = song => {
+    const playingSongs = song => {   
         if (song.paused) {
             song.play();
             play.src = "./assets/pause.svg";
@@ -28,18 +28,23 @@ const app = () => {
             play.src = "./assets/play.svg";
         }
     };
+   
     //Animate the time 
-    song.onTimeUpdate = function() {
-        let currentDuration =song.currentDuration;
-        let elapsed = fakeDuration - currentDuration;
-        let seconds=Math.floor(elapsed % 60);
-        let minutes =Math.floor(elapsed / 60);
-        timeDisplay.textContent = `${minutes}:${seconds}`;
-        if (currentDuration >= fakeDuration){
-           currentDuration = 0;
-           song.pause();
-           play.src = "./assets/play.svg";
-        }
+    song.addEventListener('timeupdate',function (){
+        test();
+    });
+    const test = ()=>{
+        let currentTime =song.currentTime;
+        //let elapsed = fakeDuration - currentTime;
+        let seconds=Math.floor(parseInt(currentTime) % 60);
+        let minutes =Math.floor(parseInt(currentTime) / 60);
+        timeDisplay.innerText = `${minutes}:${seconds}`;
+        if (currentTime >= fakeDuration){
+           currentTime = 0;
+          song.pause();
+          play.src = "./assets/play.svg";
+        };
+
     }
     
 }
