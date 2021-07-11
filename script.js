@@ -1,6 +1,7 @@
 const app = () => {
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
+    const video =document.querySelector('.video-container video')
 
     //sounds
     const songs = document.querySelectorAll('.sound-picker button');
@@ -28,11 +29,18 @@ const app = () => {
             play.src = "./assets/play.svg";
         }
     };
-   
+    //select sounds
+    sounds.forEach(sound=>{
+        sound.addEventListener('click',function(){
+            song.src=this.getAttribute('data-sound');
+            playingSongs(song);
+        });
+    });  
     //Animate the time 
     song.addEventListener('timeupdate',function (){
         test();
     });
+    // Create a function that will animate time 
     const test = ()=>{
         let currentTime =song.currentTime;
         //let elapsed = fakeDuration - currentTime;
@@ -46,6 +54,13 @@ const app = () => {
         };
 
     }
-    
+    //select time
+    timeSelect.forEach(option=>{
+        option.addEventListener('click',function(){
+            fakeDuration=this.getAttribute("data-time")
+            timeDisplay.innerText = `${Math.floor(fakeDuration / 60)}:${Math.floor(fakeDuration % 60)}`
+        });
+    });
+   
 }
 app();

@@ -13,6 +13,13 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+/*video{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -10;
+}*/
 .time-selector,
 .sound-picker,
 .player-container{
@@ -27,6 +34,7 @@
 .player-container{
     
     position: relative;
+   
 }
 .time-display{
     position: absolute;
