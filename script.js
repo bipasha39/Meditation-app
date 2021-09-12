@@ -2,7 +2,8 @@ const app = () => {
     const song = document.querySelector('.song');
     const play = document.querySelector('.play');
     const appElement =document.querySelector('.app');
-    const video =document.querySelector('.video-container video')
+    const beach =document.getElementById('beach')
+    const video =document.querySelector('.video-container video');
 
     //sounds
     const songs = document.querySelectorAll('.sound-picker button');
@@ -51,9 +52,22 @@ const app = () => {
     }
     //select sounds
     songs.forEach(sound=>{
-        sound.addEventListener('click',function(){
+        console.log(sound,"sound")
+        sound.addEventListener('click',function(event){
+            console.log("event", event.target,beach)
             song.src=this.getAttribute('data-sound');
-            appElement.style.backgroundImage="url('https://d39ghehfp8sbx4.cloudfront.net/media/img/1/95ecdee2-6dbb-4614-9c0e-aa88a3489769-1400.jpg?placeid=948&name=Barceloneta%20Beach&lat=41.378372&lng=2.192468')";
+           
+            if(event.target===beach) {
+                console.log("beach")
+                appElement.style.backgroundImage="url('https://d39ghehfp8sbx4.cloudfront.net/media/img/1/95ecdee2-6dbb-4614-9c0e-aa88a3489769-1400.jpg?placeid=948&name=Barceloneta%20Beach&lat=41.378372&lng=2.192468')";
+            }    
+             else
+                {
+                
+                appElement.style.backgroundImage= "url('./assets/Meditation-2.png')"
+                
+            }
+           
             playingSongs(song);
         });
     });  
